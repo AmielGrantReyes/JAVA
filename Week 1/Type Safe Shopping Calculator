@@ -1,0 +1,17 @@
+public class TypeSafeShoppingCalculator {
+    public static void main(String[] args) {
+        int quantity = 4;
+        double unitPrice = 59.0;
+        String storeName = "PureSilver";
+
+        double totalCost = unitPrice * quantity;
+
+        System.out.println("----- Welcome to " + storeName + " -----");
+        System.out.println("How Many? : " + quantity);
+        System.out.println("How Much? : " + unitPrice);
+        System.out.println("This is your Total: " + totalCost);
+
+        // totalCost should not be declared as an int because unitPrice is a double, and the calculation may produce a decimal value that an int cannot store.
+
+    }
+}
