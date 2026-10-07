@@ -1,0 +1,23 @@
+public class UnitCastingConverter {
+    public static void main(String[] args) {
+        double centimeters = 49.10;
+        int meters = (int) (centimeters / 100);
+
+        double remainingCentimeters = centimeters - (meters * 100);
+
+        System.out.println("Whole meters: " + meters);
+        System.out.println("Remaining centimeters: " + remainingCentimeters);
+
+        // Implicit widening is when int automatically converts to double,
+        int wholeNumber = 99;
+        double realNumber = wholeNumber;
+
+        System.out.println("Widened value: " + myDouble);
+
+        // Explicit narrowing is when converting double to int and removes the decimals.
+        double myDouble = 88.75;
+        int myInt = (int) myDouble;
+
+        System.out.println("Narrowed value: " + myInt);
+    }
+}
