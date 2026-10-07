@@ -1,0 +1,48 @@
+public class OverFlowReferenceInvestigator {
+    public static void main(String[] args){
+        byte number = 127;
+
+        System.out.println("Before Increment: " + number);
+        number++;
+        System.out.println("After Increment: " + number);
+
+        String string1 = new String("Hello, World!");
+        String string2 = new String("Hello, World!");
+        String stringLiteral= "Hello, World!";
+         System.out.println("\n===================================");
+
+        // false: string1 and string2 reference different String objects.
+        System.out.println("\nString 1 == String 2: " + (string1 == string2));
+
+        // true: equals() compares the contents of the Strings.
+        System.out.println("String 1 equals String 2: " + string1.equals(string2));
+
+        // false: string1 and string3 reference different String objects.
+        System.out.println("String 1 == String Literal: " + (string1 == stringLiteral));
+
+        // true: both Strings contain the same text.
+        System.out.println("String 1 equals String Literal: " + string1.equals(stringLiteral));
+
+        // false: string2 and string3 reference different String objects.
+        System.out.println("String 2 == String Literal: " + (string2 == stringLiteral));
+
+        // true: both Strings contain the same text.
+        System.out.println("String 2 equals String Literal: " + string2. equals(stringLiteral));
+        System.out.println("\n===================================");
+
+        int[] array1 = {10, 20, 30};
+        int[] array2 = array1;
+
+        System.out.println("\nBefore modification:");
+        System.out.println("array1[0] = " + array1[0]);
+        System.out.println("array2[0] = " + array2[0]);
+        
+       System.out.println("\n===================================");
+      
+        array2[0] = 99;
+
+        System.out.println("\nAfter modifying through array2:");
+        System.out.println("array1[0] = " + array1[0]);
+        System.out.println("array2[0] = " + array2[0]);
+    }
+}
