@@ -1,0 +1,15 @@
+public class FourFunctuonCalculator {
+	public static void main(String[] args) {
+		int a = 19;
+		int b = 4;
+		
+		System.out.println("This is Addititon: " + (a + b));
+		System.out.println("This is Substraction: " + (a - b));
+		System.out.println("This is Multiplication: " + a * b);
+		System.out.println("This is Division: " + a / b);
+		System.out.println("This is Remainder: " + a % b);
+	   
+      // Division and Remainder behave differently for Negative Operands
+		
+	}
+}
