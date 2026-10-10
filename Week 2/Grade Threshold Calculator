@@ -1,0 +1,12 @@
+public class GradeThresholdChecker{
+    public static void main(String[] args) {
+        int aveGrade = 88;
+        int absences = 3;
+
+        if ((aveGrade >= 75 && absences <= 3) || (aveGrade >= 90)) {
+            System.out.println("PASSED");
+        } else {
+            System.out.println("FAILED");
+        }
+    }
+}
