@@ -1,0 +1,93 @@
+public class NestedLoginValidator {
+    public static void main(String[] args) {
+        String username1 = "Amiel";
+        String password1 = "Abc";
+        boolean isAccountLocked1 = false;
+        
+        // Login Succesful
+        
+        System.out.println("---------- Nested Login Validator ----------");
+
+        System.out.println("\nOutcome 1: ");
+
+        if (username1.equals("Amiel")) {
+            if (password1.equals("Abc")) {
+                if (!isAccountLocked1) {
+                    System.out.println("Login Successful");
+                } else {
+                    System.out.println("Account is Locked");
+                }
+            } else {
+                System.out.println("Wrong Password");
+            }
+        } else {
+            System.out.println("Wrong Username");
+        }
+        
+        // Wrong Username
+        
+        System.out.println("\nOutcome 2: ");
+
+        String username2 = "Grant";
+        String password2 = "Abc";
+        boolean isAccountLocked2 = false;
+
+        if (username2.equals("Amiel")) {
+            if (password2.equals("Abc")) {
+                if (!isAccountLocked2) {
+                    System.out.println("Login Successful");
+                } else {
+                    System.out.println("Account is Locked");
+                }
+            } else {
+                System.out.println("Wrong Password");
+            }
+        } else {
+            System.out.println("Wrong Username");
+        }
+        
+        // Wrong Password
+        
+        System.out.println("\nOutcome 3: ");
+
+        String username3= "Amiel";
+        String password3 = "aBc";
+        boolean isAccountLocked3 = false;
+
+        if (username3.equals("Amiel")) {
+            if (password3.equals("Abc")) {
+                if (!isAccountLocked3) {
+                    System.out.println("Login Successful");
+                } else {
+                    System.out.println("Account is Locked");
+                }
+            } else {
+                System.out.println("Wrong Password");
+            }
+        } else {
+            System.out.println("Wrong Username");
+        }    
+        
+        // Account is Locked
+        
+        System.out.println("\nOutcome 4: ");
+
+        String username4 = "Amiel";
+        String password4 = "Abc";
+        boolean isAccountLocked4 = true;
+
+        if (username4.equals("Amiel")) {
+            if (password4.equals("Abc")) {
+                if (!isAccountLocked4) {
+                    System.out.println("Login Successful");
+                } else {
+                    System.out.println("Account is Locked");
+                }
+            } else {
+                System.out.println("Wrong Password");
+            }
+        } else {
+            System.out.println("Wrong Username");
+        }
+    }
+}
