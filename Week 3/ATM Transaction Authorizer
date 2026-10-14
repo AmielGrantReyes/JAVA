@@ -1,0 +1,96 @@
+public class ATMTransactionAuthorizer {
+    public static void main(String[] args) {
+        String username = "AmielGrant";
+        int pin = 9876;
+        int balance = 234567;
+        int withdrawal = 80000;
+        int dailyWithdrawn = 0;
+
+        String tier = "";
+        double feePercentage = 0;
+        int dailyLimit = 0;
+        double fee = 0;
+        double totalAmount = 0;
+ 
+        System.out.println("======= ATM TRANSACTION AUTHORIZER =======");
+ 
+        if (username.equals("AmielGrant")) {
+            if (pin == 9876) {
+                System.out.println("\nLogin successful");
+
+                if (balance >= 300000) {
+                    tier = "Platinum";
+                } else if (balance >= 200000) {
+                    tier = "Gold";
+                } else if (balance >= 100000) {
+                    tier = "Silver";
+                } else {
+                    tier = "Bronze";
+                }
+
+                System.out.println("\nAccount Tier: " + tier);
+
+                switch (tier) {
+                    case "Platinum":
+                        feePercentage = 0.01;
+                        dailyLimit = 200000;
+                        break;
+                    case "Gold":
+                        feePercentage = 0.02;
+                        dailyLimit = 100000;
+                        break;
+                    case "Silver":
+                        feePercentage = 0.03;
+                        dailyLimit = 50000;
+                        break;
+                    case "Bronze":
+                        feePercentage = 0.05;
+                        dailyLimit = 20000;
+                        break;
+                }
+
+                if (withdrawal > 0) {
+                    if (withdrawal <= balance) {
+                        if (dailyWithdrawn + withdrawal <= dailyLimit) {
+                            fee = withdrawal * feePercentage;
+                            totalAmount = withdrawal + fee;
+
+                if (totalAmount <= balance) {
+                     System.out.println("APPROVE");
+                     System.out.println("Withdrawal: " + withdrawal);
+                     System.out.println("Transaction Fee: " + fee);
+                     System.out.println("Total Deducted: " + totalAmount);
+                     System.out.println("Remaining Balance: "  + (balance - totalAmount));
+                     ;
+                            } else {
+                                System.out.println("DENY!! Reason:  Insufficient balance to cover withdrawal and fee");
+                            }
+                        } else {
+                            System.out.println("DENY! Reason: Daily withdrawal limit exceeded");
+                        }
+                    } else {
+                        System.out.println("DENY! Reason:  Insufficient balance");
+                    }
+                } else {
+                    System.out.println("DENY! Reason:  Withdrawal amount must be positive");
+                }
+
+            } else {
+                System.out.println("DENY! Reason:  Incorrect PIN or PIN must be 4 digits");
+            }
+        } else {
+            System.out.println("DENY! Reason: Incorrect username");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
