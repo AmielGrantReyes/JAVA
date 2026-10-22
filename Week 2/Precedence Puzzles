@@ -1,0 +1,37 @@
+public class PrecedencePuzzles {
+    public static void main(String[] args) {
+        int a = 5, b = 3, c = 2;
+        
+        // PREDICTED: true
+        boolean r1 = a + b * c > 10 && c - 1 == 1;
+        System.out.println("Puzzle 1 actual: " + r1);
+
+        int x = 4;
+        
+        // PREDICTED: 12, x = 4
+        int r2 = x++ * 2 + --x;
+        System.out.println("Puzzle 2 actual: " + r2 + ", x = " + x);
+
+        int p = 10, q = 20;
+        
+        // PREDICTED: true, p = 10, q = 21
+        boolean r3 = p > 5 || q++ > 100 && p-- < 0;
+        System.out.println("Puzzle 3 actual: " + r3 + ", p = " + p + ", q = " + q);
+        // FOLLOW-UP (wrong on q): && groups tighter than ||, but the left side of || is already true,
+        // so short-circuiting skips the right side. q++ never runs; q stays 20.
+
+        int m = 7;
+        
+        // PREDICTED: 14
+        int r4 = m % 3 + m / 2 * 2 - -m;
+        System.out.println("Puzzle 4 actual: " + r4);
+
+        int j = 3;
+        
+        // PREDICTED: false
+        boolean r5 = !(j > 2) == j < 2;
+        System.out.println("Puzzle 5 actual: " + r5);
+        // FOLLOW-UP (wrong): ! applies only to (j > 2); < binds tighter than ==.
+        // Grouping: (!(j > 2)) == (j < 2) -> false == false -> true.
+    }
+}
