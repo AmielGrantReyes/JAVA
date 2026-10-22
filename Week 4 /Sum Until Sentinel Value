@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class SumUntilSentinelValue {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int total = 0;
+
+        while (true) {
+            System.out.print("Enter your number (-1 to stop): ");
+            int number = scanner.nextInt();
+
+            if (number == -1) {
+                break;              // stop immediately, -1 is NOT added
+            }
+
+            total += number;
+        }
+
+        System.out.println("Final total: " + total);
+        scanner.close();
+    }
+}
