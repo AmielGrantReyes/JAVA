@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class PatternGeneratorWithEarlyExit {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter size: ");
+        int size = scanner.nextInt();
+
+        System.out.println("Enter row to skip: ");
+        int skipRow = scanner.nextInt();
+
+        System.out.println("Enter column to stop at: ");
+        int breakCol = scanner.nextInt();
+
+        for (int row = 1; row <= size; row++) {
+
+            // CONTINUE: skip the chosen row entirely
+            if (row == skipRow) {
+                continue;
+            }
+
+            for (int col = 1; col <= row; col++) {
+
+                // BREAK: exit inner loop once col passes the limit
+                if (col > breakCol) {
+                    break;
+                }
+
+                System.out.print(col + " ");
+            }
+            System.out.println();
+        }
+
+        scanner.close();
+    }
+}
