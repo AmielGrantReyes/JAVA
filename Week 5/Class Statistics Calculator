@@ -1,0 +1,21 @@
+public class ClassStatisticsCalculator {
+    public static void main(String[] args) {
+        int[] studentScores = {88, 92, 75, 100, 67, 85, 91, 78};
+        int sum = 0;
+        int highest = studentScores[0];
+        int lowest = studentScores[0];
+
+        for (int i = 0; i < studentScores.length; i++) {
+            sum += studentScores[i];
+            if (studentScores[i] > highest) highest = studentScores[i];
+            if (studentScores[i] < lowest) lowest = studentScores[i];
+        }
+
+        double average = (double) sum / studentScores.length;
+
+        System.out.println("Sum: " + sum);
+        System.out.println("Average: " + average);
+        System.out.println("Highest: " + highest);
+        System.out.println("Lowest: " + lowest);
+    }
+}
