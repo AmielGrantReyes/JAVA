@@ -1,0 +1,112 @@
+import java.util.Scanner;
+
+public class WarehouseInventoryScanner {
+    static Scanner input = new Scanner(System.in);
+
+ 
+    static int[][] warehouse = {
+        {10, 5, -1, 20},
+        {3, 15, 2, 8},
+        {25, -1, 4, 12}
+    };
+
+    static final int CRITICAL_LEVEL = 5;
+
+    public static void main(String[] args) {
+        int choice;
+        
+        do {
+            System.out.println("\n1. Total Inventory");
+            System.out.println("2. Find Critically Low Shelf");
+            System.out.println("3. Restock Shelf");
+            System.out.println("4. Exit");
+            System.out.print("Choice: ");
+            choice = input.nextInt();
+
+            switch (choice) {
+                case 1:
+                    calculateTotal();
+                    break;
+                case 2:
+                    findCriticalShelf();
+                    break;
+                case 3:
+                    restock();
+                    break;
+                case 4:
+                    System.out.println("Goodbye.");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        } while (choice != 4);
+    }
+    
+    static void calculateTotal() {
+        int total = 0;
+
+        for (int i = 0; i < warehouse.length; i++) {
+            for (int j = 0; j < warehouse[i].length; j++) {
+                if (warehouse[i][j] == -1) {
+                    continue;
+                }
+                total += warehouse[i][j];
+            }
+        }
+
+        System.out.println("Total inventory: " + total);
+    }
+
+    static void findCriticalShelf() {
+        int foundRow = -1;
+        int foundCol = -1;
+
+        for (int i = 0; i < warehouse.length && foundRow == -1; i++) {
+            for (int j = 0; j < warehouse[i].length; j++) {
+                if (warehouse[i][j] != -1 && warehouse[i][j] < CRITICAL_LEVEL) {
+                    foundRow = i;
+                    foundCol = j;
+                    break;
+                }
+            }
+        }
+
+        if (foundRow == -1) {
+            System.out.println("No critically low shelves.");
+        } else {
+            System.out.println("First critical shelf: Row " + (foundRow + 1)
+                    + ", Column " + (foundCol + 1)
+                    + " (" + warehouse[foundRow][foundCol] + " items)");
+        }
+    }
+    
+    static void restock() {
+        System.out.print("Row (1-" + warehouse.length + "): ");
+        int row = input.nextInt() - 1;
+        System.out.print("Column (1-" + warehouse[0].length + "): ");
+        int col = input.nextInt() - 1;
+
+        if (row < 0 || row >= warehouse.length
+                || col < 0 || col >= warehouse[row].length
+                || warehouse[row][col] == -1) {
+            System.out.println("Invalid or damaged shelf.");
+            return;
+        }
+
+        warehouse[row][col] = restockShelf(warehouse[row][col]);
+        System.out.println("New count: " + warehouse[row][col]);
+    }
+
+    static int restockShelf(int currentCount) {
+        while (true) {
+            System.out.print("Quantity to add (> 0): ");
+            int quantity = input.nextInt();
+
+            if (quantity > 0) {
+                return currentCount + quantity;
+            }
+            System.out.println("Quantity must be positive.");
+        }
+    }
+}
+
