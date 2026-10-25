@@ -1,0 +1,59 @@
+public class ClassRankingSystem {
+
+    static class Student {
+        String name;
+        int[] quizzes;
+
+        Student(String name, int[] quizzes) {
+            this.name = name;
+            this.quizzes = quizzes;
+        }
+
+        double avg() {
+            int sum = 0;
+            for (int q : quizzes) sum += q;
+            return (double) sum / quizzes.length;
+        }
+    }
+
+    static void sort(Student[] s) {
+        for (int i = 0; i < s.length - 1; i++)
+            for (int j = 0; j < s.length - 1 - i; j++)
+                if (s[j].avg() < s[j + 1].avg()) {
+                    Student t = s[j];
+                    s[j] = s[j + 1];
+                    s[j + 1] = t;
+                }
+    }
+
+    static int findRank(Student[] s, String name) {
+        for (int i = 0; i < s.length; i++)
+            if (s[i].name.equals(name)) {
+                while (i > 0 && s[i - 1].avg() == s[i].avg()) i--;
+                return i + 1;
+            }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        String[] names = {"Amiel", "Grant", "Flores", "Reyes", "Miel"};
+        int[][] raw = {
+            {92, 88, 95, 90},
+            {78, 85, 80, 82},
+            {80, 90, 85, 85},
+            {85, 85, 85, 85},
+            {99, 94, 97, 96}
+        };
+
+        Student[] students = new Student[names.length];
+        for (int i = 0; i < names.length; i++)
+            students[i] = new Student(names[i], raw[i]);
+
+        sort(students);
+
+        System.out.printf("%-6s %-10s %s%n", "Rank", "Name", "Average");
+        for (Student s : students)
+            System.out.printf("%-6d %-10s %.2f%n", findRank(students, s.name), s.name, s.avg());
+            
+    }
+}
